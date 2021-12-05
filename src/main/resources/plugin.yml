@@ -1,0 +1,7 @@
+name: FastInventory
+version: '${project.version}'
+main: fan.frozen.fastinventory.FastInventory
+api-version: 1.16
+commands:
+  fastInventory:
+    descrpition: usage /fastInventory <register/open> register or open an Inventory
