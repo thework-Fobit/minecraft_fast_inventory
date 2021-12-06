@@ -9,7 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.Objects;
 /**
     @author thework
-    @version alpha 1.0
+    @version alpha 1.1
  */
 
 public final class FastInventory extends JavaPlugin {
