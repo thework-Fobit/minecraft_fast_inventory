@@ -83,7 +83,7 @@ public class UserData implements FileConfig {
     }
     public void saveInventory(Player player,Inventory inventory,String inventoryName) throws Exception{
         HashMap<Integer,ItemStack> partDownInventory = new HashMap<>();
-        HashMap<String, HashMap<Integer, ItemStack>> inventoryData = getInventoryData(inventoryName);
+        HashMap<String, HashMap<Integer, ItemStack>> inventoryData = getInventoryData(player.getName());
         //save inventory method, first treat inventory apart to a hashmap with the item as the value, and item's location as the key
         if (inventoryData == null) {
             inventoryData = new HashMap<>();
@@ -93,10 +93,13 @@ public class UserData implements FileConfig {
         }
         //then put the previous hashmap into another map, with inventory name as the key
         inventoryData.put(inventoryName,partDownInventory);
+        save(player,inventoryData);
+    }
+    public void save(Player player,HashMap<String,HashMap<Integer,ItemStack>> input) throws Exception{
         ArrayList<HashMap<String,HashMap<Integer,ItemStack>>> data = new ArrayList<>();
         //at last, put HashMap<InventoryName,InventoryHashMap> into an arraylist and output it into yml file
         //this place we use list<HashMap<?,?>> because when bukkit read yml file, it can only read list or MapList, and why we don't use get object then reflect it into HashMap<?,?>, just read the previous comment
-        data.add(inventoryData);
+        data.add(input);
         userData.set("allUserData"+"."+player.getName(),data);
         userData.save(config.getUserDataLocationFromConfig());
         reloadUserData();
