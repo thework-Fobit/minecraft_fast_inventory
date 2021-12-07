@@ -106,6 +106,7 @@ public class UserData implements FileConfig {
         reloadUserData();
     }
     public ArrayList<String> getAllInventoryList(String playerName){
+        //get all the inventory from user data
         ArrayList<String> name = new ArrayList<>();
         UserData userData = new UserData() ;
         HashMap<String, HashMap<Integer, ItemStack>> inventoryData = userData.getInventoryData(playerName);

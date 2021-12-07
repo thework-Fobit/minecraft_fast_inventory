@@ -35,6 +35,7 @@ public class Config implements FileConfig {
         }
     }
     public void setDefaultValue() throws Exception{
+        //add default value to config
         configuration.set("userDataLocation",userDataLocation.getAbsolutePath());
         configuration.set("maxInventoryCount",10);
         configuration.set("pluginVersion",pluginVersion);

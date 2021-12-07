@@ -22,9 +22,13 @@ public class CheckInventoryCommand implements CommandExecutor, TabCompleter {
             Player player = (Player) sender;
             if (args.length>=2){
                 if (player.hasPermission("fastInventory.permission.checkInventory")){
+                    //check user for its permission and check for the player and inventory was existed if it was, then apply the command
                     HashMap<String, HashMap<Integer, ItemStack>> inventoryData = userData.getInventoryData(args[0]);
                     Inventory inventory = Bukkit.createInventory(null,6*9,args[1]);
+                    //because owner set to null, system now would not take the checking inventory as you own, prevent from covered self inventory by checking inventory
+                    //bug fixed
                     if (inventoryData!=null){
+                        //get data and reconstruct a new inventory pretty much like the way open command works, you can check for open command's comment for more help
                         HashMap<Integer, ItemStack> integerItemStackHashMap = inventoryData.get(args[1]);
                         if (integerItemStackHashMap!=null){
                             for (Map.Entry<Integer,ItemStack> entry:integerItemStackHashMap.entrySet()){

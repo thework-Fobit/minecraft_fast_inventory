@@ -20,6 +20,8 @@ public class RegisterCommand implements CommandExecutor, TabCompleter {
                 Player player = (Player) sender;
                 if (args.length>=1){
                     if (!isUserHaveMaxCountInventory(player)||player.hasPermission("fastInventory.permission.unlimitedInventory")) {
+                        //now it will check if the user already run out inventory slot before register
+                        //you could set limit amount to -1 in the configuration file to unlock unlimited inventory slot, you can also pass by this number check by give player the fastInventory.permission.unlimitedInventory permission
                         if (userData.getInventoryData(sender.getName())!=null){
                             //check if the inventory already exist, if it already existed, stop register process and remind player
                             if (!userData.getInventoryData(sender.getName()).containsKey(args[0])){
@@ -56,12 +58,14 @@ public class RegisterCommand implements CommandExecutor, TabCompleter {
     public boolean isUserHaveMaxCountInventory(Player player){
         String name = player.getName();
         UserData data = new UserData();
+        //get max count and onw count to compare
         int size = 0;
         if (data.getInventoryData(name)!=null) {
             size = data.getInventoryData(name).keySet().size();
         }
         int maxSize = FastInventory.config.getMaxInventoryCount();
         if (maxSize<0){
+            //if you set max inventory count to a number which smaller than 0, it will unlock the unlimited mode
             return false;
         }else {
             return size>maxSize;
