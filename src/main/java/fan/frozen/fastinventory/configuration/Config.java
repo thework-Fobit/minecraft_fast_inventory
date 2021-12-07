@@ -36,11 +36,15 @@ public class Config implements FileConfig {
     }
     public void setDefaultValue() throws Exception{
         configuration.set("userDataLocation",userDataLocation.getAbsolutePath());
+        configuration.set("maxInventoryCount",10);
         configuration.set("pluginVersion",pluginVersion);
         configuration.save(configurationFile);
     }
     public File getUserDataLocationFromConfig(){
         return new File(Objects.requireNonNull(configuration.getString("userDataLocation")));//get config info
+    }
+    public int getMaxInventoryCount(){
+        return configuration.getInt("maxInventoryCount");
     }
     public void reloadConfig(){
         try {

@@ -3,5 +3,26 @@ version: '${project.version}'
 main: fan.frozen.fastinventory.FastInventory
 api-version: 1.16
 commands:
-  fastInventory:
-    descrpition: usage /fastInventory <register/open> register or open an Inventory
+  fivregister:
+    descrpition: usage /fivregister <InventoryName> register a new Inventory
+  fivopen:
+    description: usage /fivopen <InventoryName> open an exsited Invnetory
+  fivdelete:
+    description: usage /fivdelete <InventoryName> delete an exsited Inventory
+  fivlist:
+    description: usage /fivlist list all the exsited Inventory
+  fivcheck:
+    description: usage /fivcheck <playerName> <InventoryName> to check a player's inventory
+permissions:
+  fastInventory.permission.checkInventory:
+    description: permission of checking others inventory
+    default: op
+  fastInventory.permission.unlimitedInventory:
+    description: permission of have unlitmit amount of Inventory
+    default: op
+  fastInventory.permission.listOthersInventory:
+    description: permission of list others' Inventory
+    default: op
+  fastInventory.permission.registerInventory:
+    description: permission of regitser new Inventory
+    default: true

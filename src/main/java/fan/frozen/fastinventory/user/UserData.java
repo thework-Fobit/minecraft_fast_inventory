@@ -12,6 +12,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class UserData implements FileConfig {
     private final Config config;
@@ -103,5 +104,14 @@ public class UserData implements FileConfig {
         userData.set("allUserData"+"."+player.getName(),data);
         userData.save(config.getUserDataLocationFromConfig());
         reloadUserData();
+    }
+    public ArrayList<String> getAllInventoryList(String playerName){
+        ArrayList<String> name = new ArrayList<>();
+        UserData userData = new UserData() ;
+        HashMap<String, HashMap<Integer, ItemStack>> inventoryData = userData.getInventoryData(playerName);
+        for (Map.Entry<String,HashMap<Integer,ItemStack>> entry: inventoryData.entrySet()){
+            name.add(entry.getKey());
+        }
+        return name;
     }
 }
